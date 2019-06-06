@@ -1,0 +1,10 @@
+<form [formGroup]="form" (ngSubmit)="formSubmit()">
+  <ng-container *ngFor="let field of fields; trackBy: fieldTrackFun">
+    <app-field *ngIf="field.hintFunc; else noHint" [field]="field" [form]="form" (hint)="field.hintFunc()"> </app-field>
+    <ng-template #noHint>
+        <app-field [field]="field" [form]="form"> </app-field>
+    </ng-template>
+  </ng-container>
+
+  <button type="submit">SUBMIT</button>
+</form>

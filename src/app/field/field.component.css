@@ -1,0 +1,13 @@
+.required::after {
+    color: red;
+    content: '*';
+}
+
+.error {
+    color: red;
+    margin: 10px;
+}
+
+:host {
+    margin: 10px;
+}

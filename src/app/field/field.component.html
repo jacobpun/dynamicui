@@ -1,0 +1,31 @@
+<form [formGroup]="form">
+  <label for="form.internalName.internalName" [ngClass]="{required: field.required}">{{ field.displayName}}</label>
+  <ng-container *ngTemplateOutlet="getTemplate()"></ng-container>
+  <span *ngIf="hint.observers?.length > 0" (click)="onHintClicked()">Hint</span>
+  <span *ngIf="showError()" class="error">! {{getErrorMessage()}}</span>
+
+  <ng-template #text>
+    <input type="text" 
+    [formControlName]="field.internalName.internalName" 
+    [id]="field.internalName.internalName"
+    [placeholder]="field.placeHolder">
+  </ng-template>
+  
+  <ng-template #number>
+      <input type="number" [formControlName]="field.internalName.internalName" [id]="field.internalName.internalName">
+  </ng-template>
+
+  <ng-template #numberUnique>
+      <input type="number" unique [formControlName]="field.internalName.internalName" [id]="field.internalName.internalName" [field]="field">
+  </ng-template>
+
+  <ng-template #dropDown>
+    <select 
+      [formControlName]="field.internalName.internalName" 
+      [id]="field.internalName.internalName"
+      [selectedIndex]="1">
+      <option *ngFor="let choice of field.choices" [value]="choice.value">{{choice.label}}</option>
+    </select>
+  </ng-template>
+
+</form>
